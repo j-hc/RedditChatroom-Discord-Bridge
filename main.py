@@ -10,6 +10,6 @@ chatbot = ChatBot(print_chat=True, store_session=True, authentication=reddit_bot
 hook = Webhook(dc_webhook_url)
 
 
-@chatbot.after_message_hook(frame_type='MESG')
+@chatbot.on_message_hook
 def send2discord(resp):
     hook.send(f"{resp.user.name}@{chatbot.get_chatroom_name_id_pairs().get(resp.channel_url)}: {resp.message}")
